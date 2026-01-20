@@ -24,8 +24,8 @@ export default function TopNavbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
 
         {/* LEFT NAV */}
-        <nav className="hidden md:flex gap-6 text-sm font-medium">
-          <Link href="/">Home</Link>
+        <nav className="hidden md:flex gap-6 text-sm text-[#831113] font-medium">
+            <Link  href="/">Home</Link>
           <Link href="/punjabi">Punjabi</Link>
           <Link href="/shirts">Shirt</Link>
         </nav>

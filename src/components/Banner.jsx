@@ -12,13 +12,25 @@ const banners = [
   },
   {
     id: 2,
-    image: 'banner1.jpg',
+    image: 'banner4.png',
     title: 'Premium Denim',
     subtitle: 'Limited Time Offer'
   },
   {
     id: 3,
-    image: 'https://i.ibb.co.com/JjzLzwjn/web-cover-5.webp',
+    image: 'banner5.png',
+    title: 'Summer Essentials',
+    subtitle: 'Free Shipping Available'
+  },
+  {
+    id: 4,
+    image: 'banner6.png',
+    title: 'Summer Essentials',
+    subtitle: 'Free Shipping Available'
+  },
+  {
+    id: 5,
+    image: 'banner7.png',
     title: 'Summer Essentials',
     subtitle: 'Free Shipping Available'
   }
