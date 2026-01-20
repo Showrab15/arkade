@@ -2,8 +2,8 @@
 "use client"
 import { useState, useEffect } from 'react';
 import { ArrowLeft, Package, Tag, Heart, Share2, Truck, ShieldCheck, RotateCcw, X, ZoomIn } from 'lucide-react';
-import { useProducts } from '@/context/useProducts';
 import { useParams, useRouter } from 'next/navigation';
+import { useProducts } from '@/context/useProducts';
 
 export default function ProductDetailsPage() {
   const { id } = useParams();

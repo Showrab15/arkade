@@ -52,8 +52,8 @@ export default function Footer() {
                 </div>
                 <div className="flex items-start gap-2">
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
-                  <a href="mailto:arjoclothing@gmail.com" className="hover:text-[#7a0002] transition-colors">
-                    arjoclothing@gmail.com
+                  <a href="mailto: arkade@gmail.com" className="hover:text-[#7a0002] transition-colors">
+                    arkade@gmail.com
                   </a>
                 </div>
                 <div className="flex items-start gap-2">
@@ -174,7 +174,7 @@ export default function Footer() {
         <div className="md:hidden space-y-4">
           {/* Brand Section - Always Visible on Mobile */}
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold tracking-tight">ARJO</h2>
+            <h2 className="text-2xl font-bold tracking-tight">Arkade</h2>
             
             <div className="flex items-center gap-3 text-gray-700">
               <div className="p-2 bg-gray-100 rounded-lg">
@@ -319,8 +319,8 @@ export default function Footer() {
                   </div>
                   <div className="flex items-start gap-2">
                     <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-gray-400" />
-                    <a href="mailto:arjoclothing@gmail.com" className="hover:text-[#7a0002] transition-colors">
-                      arjoclothing@gmail.com
+                    <a href="mailto: arkade@gmail.com" className="hover:text-[#7a0002] transition-colors">
+                       arkade@gmail.com
                     </a>
                   </div>
                   <div className="flex items-start gap-2">
@@ -339,7 +339,7 @@ export default function Footer() {
         <div className="mt-8 pt-8 border-t border-gray-200">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-gray-600">
             <p className="text-center sm:text-left">
-              © {new Date().getFullYear()} ARJO. All rights reserved.
+              © {new Date().getFullYear()} Arkade. All rights reserved.
             </p>
             <div className="flex flex-wrap items-center justify-center gap-4">
               <a href="#" className="hover:text-[#7a0002] transition-colors">Privacy</a>

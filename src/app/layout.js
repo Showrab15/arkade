@@ -6,7 +6,7 @@ import BottomNavbar from "@/components/BottomNavbar"
 import Footer from "@/components/Footer"
 
 export const metadata = {
-  title: "Fashion Brand",
+  title: "We Arkade",
   description: "Premium clothing showcase",
 }
 
