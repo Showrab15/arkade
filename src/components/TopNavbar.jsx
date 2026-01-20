@@ -24,11 +24,26 @@ export default function TopNavbar() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
 
         {/* LEFT NAV */}
-        <nav className="hidden md:flex gap-6 text-sm text-[#831113] font-medium">
-            <Link  href="/">Home</Link>
-          <Link href="/punjabi">Punjabi</Link>
-          <Link href="/shirts">Shirt</Link>
-        </nav>
+   <nav className="hidden md:flex gap-6 text-sm text-[#831113] font-medium">
+  {[
+    { name: "Home", href: "/" },
+    { name: "Punjabi", href: "/punjabi" },
+    { name: "Shirt", href: "/shirts" },
+  ].map((item) => (
+    <Link
+      key={item.name}
+      href={item.href}
+      className="relative py-1 after:absolute after:left-0 after:-bottom-1 
+after:h-[2px] after:w-full after:origin-left
+after:scale-x-0 after:bg-[#831113]
+after:transition-transform after:duration-300
+hover:after:scale-x-100"
+    >
+      {item.name}
+    </Link>
+  ))}
+</nav>
+
 
         {/* LOGO (Modern sizing) */}
         <Link href="/" className="flex items-center gap-2">

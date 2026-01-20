@@ -33,7 +33,7 @@ export default function Products() {
             placeholder="Search products..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full  px-4 py-2 border border-gray-300 rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-[#831113]"
+              className="w-full border-[#831113] px-4 py-2 border  rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-[#831113]"
           />
         </div>
 
