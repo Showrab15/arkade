@@ -49,7 +49,7 @@ export default function Products() {
                   key={category}
                   onClick={() => setSelectedCategory(category)}
                   className={`px-4 py-2 rounded-full whitespace-nowrap transition-all ${selectedCategory === category
-                      ? 'bg-black text-white'
+                      ? 'bg-[#831113] text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                     }`}
                 >

@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { ArrowLeft, Package, Tag, Heart, Share2, Truck, ShieldCheck, RotateCcw, X, ZoomIn } from 'lucide-react';
 import { useParams, useRouter } from 'next/navigation';
 import { useProducts } from '@/context/useProducts';
+import { auth } from '../../../../firebase';
+import PhoneVerificationModal from '@/components/PhoneVerificationModal';
 
 export default function ProductDetailsPage() {
   const { id } = useParams();
@@ -14,6 +16,22 @@ export default function ProductDetailsPage() {
   const [isZoomed, setIsZoomed] = useState(false);
   const [activeTab, setActiveTab] = useState('description');
   const [isFavorite, setIsFavorite] = useState(false);
+const [showOtp, setShowOtp] = useState(false);
+const handleAddToCart = () => {
+  const user = auth.currentUser;
+
+  if (!user) {
+    router.push("/login");
+    return;
+  }
+
+  if (!user.phoneNumber) {
+    setShowOtp(true);
+    return;
+  }
+
+  // ✅ Add to cart logic here
+};
 
   const product = getProductById(id || '');
 
@@ -229,6 +247,8 @@ export default function ProductDetailsPage() {
             <div className="space-y-3 mb-6">
               <button
                 disabled={product.availability === 'out-of-stock'}
+                  onClick={handleAddToCart}
+
                 className={`w-full py-4 rounded-lg transition-all text-base ${
                   product.availability === 'out-of-stock'
                     ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
@@ -487,6 +507,15 @@ export default function ProductDetailsPage() {
           </button>
         </div>
       </div>
+{showOtp && (
+  <PhoneVerificationModal
+    onClose={() => setShowOtp(false)}
+    onSuccess={(phone) => {
+      console.log("Verified phone:", phone);
+      // Now allow add to cart
+    }}
+  />
+)}
 
     </div>
   );

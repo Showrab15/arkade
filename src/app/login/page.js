@@ -1,152 +1,121 @@
 "use client";
 
 import { useState } from "react";
-import { ShoppingBag, Mail, Lock, User } from "lucide-react";
-import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardAction,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import Link from "next/link";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
+import { auth } from "../../../firebase";
 
-export default function Page() {
-  const [isLogin, setIsLogin] = useState(true);
+export default function LoginPage() {
+  const router = useRouter();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [customError, setCustomError] = useState("");
 
-  const { login, signup } = useAuth();
-  const router = useRouter(); // Next.js router
+  const [signInWithEmailAndPassword, user, loading, error] =
+    useSignInWithEmailAndPassword(auth);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+  const handleSignIn = async (e) => {
+    e.preventDefault(); // 🔹 Prevent form auto-submit
+
+    setCustomError(""); // Clear previous error
 
     try {
-      if (isLogin) {
-        await login(email, password);
-      } else {
-        await signup(email, password, displayName);
+      const res = await signInWithEmailAndPassword(email, password);
+
+      if (!res) {
+        setCustomError("Invalid email or password");
+        return;
       }
-      router.push("/"); // Navigate using Next.js
+
+      console.log("Login success:", res);
+
+      sessionStorage.setItem("user", "true");
+
+      setEmail("");
+      setPassword("");
+
+      router.push("/");
     } catch (err) {
-      setError(err.message || "Authentication failed");
-    } finally {
-      setLoading(false);
+      console.error(err);
+      setCustomError("Something went wrong. Try again.");
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center px-4">
-      <div className="max-w-md w-full">
-        {/* Logo */}
-        <div className="py-4 text-center mb-4">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-black rounded-full mb-4">
-            <ShoppingBag className="w-8 h-8 text-white" />
-          </div>
-          <h1 className="text-3xl tracking-tight">ARCADE</h1>
-          <p className="text-gray-600 mt-2">
-            {isLogin ? "Welcome back" : "Create your account"}
-          </p>
-        </div>
+    <div className=" min-h-screen flex items-center justify-center px-4">
+      <Card className="py-10 w-full mx-auto max-w-sm">
+        <CardHeader>
+          <CardTitle>Login to your Admin account</CardTitle>
+          <CardDescription>
+            Enter your email below to login to your Admin account
+          </CardDescription>
+          <CardAction>
+            <Link href="/sign-up">
+              <Button variant="link">Sign Up</Button>
+            </Link>
+          </CardAction>
+        </CardHeader>
 
-        {/* Form Card */}
-        <div className="bg-white rounded-lg shadow-lg p-8">
-          {/* Demo Credentials Info */}
-          <div className="mb-6 p-4 bg-blue-50 rounded-lg text-sm">
-            <p className="mb-2">
-              <strong>Demo Admin:</strong>
-            </p>
-            <p className="text-gray-700">Email: admin@example.com</p>
-            <p className="text-gray-700">Password: admin123</p>
-          </div>
-
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <div>
-                <label className="block text-sm mb-2">Display Name</label>
-                <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                  <input
-                    type="text"
-                    value={displayName}
-                    onChange={(e) => setDisplayName(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-                    placeholder="Your name"
-                    required={!isLogin}
-                  />
-                </div>
-              </div>
-            )}
-
-            <div>
-              <label className="block text-sm mb-2">Email</label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
+        <CardContent>
+          <form>
+            <div className="flex flex-col gap-6">
+              <div className="grid gap-2">
+                <Label>Email</Label>
+                <Input
+                  name="email"
                   type="email"
+                  placeholder="admin@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-                  placeholder="your@email.com"
                   required
                 />
               </div>
-            </div>
 
-            <div>
-              <label className="block text-sm mb-2">Password</label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                <input
+              <div className="grid gap-2">
+                <Label>Password</Label>
+                <Input
+                  name="password"
                   type="password"
+                  placeholder="•••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-black focus:border-transparent"
-                  placeholder="••••••••"
                   required
                 />
               </div>
             </div>
 
-            {error && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-600 text-sm">
-                {error}
-              </div>
+            {(customError || error) && (
+              <p className="text-red-500 text-center mt-2 text-sm">
+                {customError || error.message}
+              </p>
             )}
 
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition-all disabled:bg-gray-400 disabled:cursor-not-allowed"
-            >
-              {loading ? "Please wait..." : isLogin ? "Sign In" : "Sign Up"}
-            </button>
+            <CardFooter className="flex-col gap-2 mt-6 px-0">
+              <Button
+                onClick={handleSignIn}
+                type="button" // 🔹 FIXED
+                className="w-full"
+              >
+                {loading ? "Logging in..." : "Login"}
+              </Button>
+            </CardFooter>
           </form>
-
-          <div className="mt-6 text-center">
-            <button
-              onClick={() => {
-                setIsLogin(!isLogin);
-                setError("");
-              }}
-              className="text-sm text-gray-600 hover:text-black transition-colors"
-            >
-              {isLogin
-                ? "Don't have an account? Sign up"
-                : "Already have an account? Sign in"}
-            </button>
-          </div>
-
-          <div className="mt-4 text-center">
-            <button
-              onClick={() => router.push("/")}
-              className="text-sm text-gray-500 hover:text-black transition-colors"
-            >
-              Continue as Guest
-            </button>
-          </div>
-        </div>
-      </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

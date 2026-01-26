@@ -3,9 +3,9 @@
 import { useEffect, useState } from 'react';
 import { Package, TrendingUp, Users, Eye } from 'lucide-react';
 import Link from 'next/link';
-import { useProducts } from '@/context/ProductContext';
 import { analyticsService } from '@/services/analyticsServices';
-import AdminLayout from '../components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
+import { useProducts } from '@/context/useProducts';
 
 export default function AdminDashboard() {
   const { products } = useProducts();

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Shield, User, Mail } from 'lucide-react';
 import { authService } from '@/services/authServices';
-import AdminLayout from '@/app/components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
 
 
 

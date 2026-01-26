@@ -1,8 +1,8 @@
 "use client"
 import { useState } from 'react';
 import { Plus, Edit, Trash2, X, Upload, Image as ImageIcon } from 'lucide-react';
-import { useProducts } from '@/context/ProductContext';
-import AdminLayout from '@/app/components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
+import { useProducts } from '@/context/useProducts';
 
 export default function AdminProducts() {
   const { products, addProduct, updateProduct, deleteProduct, refreshProducts } = useProducts();

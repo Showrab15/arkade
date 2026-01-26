@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
 import { analyticsService } from '@/services/analyticsServices';
-import AdminLayout from '@/app/components/AdminLayout';
+import AdminLayout from '@/components/AdminLayout';
 
 const COLORS = ['#000000', '#404040', '#737373', '#a3a3a3', '#d4d4d4', '#e5e5e5'];
 
