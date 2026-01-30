@@ -26,16 +26,7 @@ export default function Products() {
 
       {/* Main Content */}
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Search Section */}
-        <div id="search" className="mb-8">
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full border-[#831113] px-4 py-2 border  rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-[#831113]"
-          />
-        </div>
+     
 
         {/* Categories Section */}
         <div id="categories" className="mb-8">
