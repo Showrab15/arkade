@@ -1,12 +1,12 @@
-import { useContext } from "react";
-import { ProductContext } from "./ProductContext";
+// import { useContext } from "react";
+// import { ProductContext } from "./ProductContext";
 
-export function useProducts() {
-  const context = useContext(ProductContext);
+// export function useProducts() {
+//   const context = useContext(ProductContext);
 
-  if (!context) {
-    throw new Error("useProducts must be used inside ProductProvider");
-  }
+//   if (!context) {
+//     throw new Error("useProducts must be used inside ProductProvider");
+//   }
 
-  return context;
-}
+//   return context;
+// }

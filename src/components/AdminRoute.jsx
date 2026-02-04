@@ -1,27 +1,27 @@
-import { Navigate } from 'react-router-dom';
-import { ReactNode } from 'react';
-import { useAuth } from '@/context/AuthContext';
+// import { Navigate } from 'react-router-dom';
+// import { ReactNode } from 'react';
+// import { useAuth } from '@/context/AuthContext';
 
 
 
-export default function AdminRoute({ children }) {
-  const { user, loading, isAdmin } = useAuth();
+// export default function AdminRoute({ children }) {
+//   const { user, loading, isAdmin } = useAuth();
 
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
-      </div>
-    );
-  }
+//   if (loading) {
+//     return (
+//       <div className="min-h-screen flex items-center justify-center">
+//         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+//       </div>
+//     );
+//   }
 
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
+//   if (!user) {
+//     return <Navigate to="/login" replace />;
+//   }
 
-  if (!isAdmin()) {
-    return <Navigate to="/" replace />;
-  }
+//   if (!isAdmin()) {
+//     return <Navigate to="/" replace />;
+//   }
 
-  return <>{children}</>;
-}
+//   return <>{children}</>;
+// }

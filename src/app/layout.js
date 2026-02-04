@@ -1,9 +1,5 @@
-import { AuthProvider } from "@/context/AuthContext"
 import "./globals.css"
-import { ProductProvider } from "@/context/ProductContext"
-import TopNavbar from "@/components/TopNavbar"
-import BottomNavbar from "@/components/BottomNavbar"
-import Footer from "@/components/Footer"
+
 import { Playfair_Display, Montserrat } from 'next/font/google';
 
 export const metadata = {
@@ -29,8 +25,8 @@ export default function RootLayout({ children }) {
     <html lang="en" className={`${playfair.variable} ${montserrat.variable}`}>
       <body className="min-h-screen bg-background">
         {/* Desktop Navbar */}
-        <AuthProvider>
-          <ProductProvider>
+        {/* <AuthProvider> */}
+          {/* <ProductProvider> */}
             <div className="hidden md:block">
               {/* <TopNavbar /> */}
             </div>
@@ -43,8 +39,8 @@ export default function RootLayout({ children }) {
             <div className="md:hidden">
               {/* <BottomNavbar /> */}
             </div>
-          </ProductProvider>
-        </AuthProvider>
+          {/* </ProductProvider> */}
+        {/* </AuthProvider> */}
       </body>
     </html>
   )
