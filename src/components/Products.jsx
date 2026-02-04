@@ -4,6 +4,8 @@ import { Star, TrendingUp } from 'lucide-react';
 import ProductCard from './ProductCard';
 import { useProducts } from '@/context/useProducts';
 import FeaturedProduct from './FeaturedProduct';
+import { Shirt, Sparkles, Flame } from "lucide-react";
+import NewArrivalCard from './NewArrivalCard';
 
 export default function Products() {
   const { products, categories, loading } = useProducts();
@@ -20,39 +22,87 @@ export default function Products() {
 
   const featuredProducts = products.filter(p => p.featured);
 
+  const CATEGORY_META = {
+    All: { icon: Sparkles },
+    Casual: { icon: Shirt, badge: "NEW" },
+    Formal: { icon: Shirt },
+    Oversized: { icon: Shirt, badge: "HOT" },
+  };
+  const newArrivals = products
+  .filter(p => p.new_arrival)
+  .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
   return (
-    <div className="px-6 py-10 md:pb-0">
+    <div className="px-6 pt-20 ">
 
 
       {/* Main Content */}
       <div className="mx-auto px-4 sm:px-6 lg:px-8 py-8">
-     
 
         {/* Categories Section */}
-        <div id="categories" className="mb-8">
-          <h2 className="text-xl md:text-2xl mb-4">Shop by Category</h2>
+        <div className="mb-14">
+          {/* Title */}
+          <div className="flex items-end justify-between mb-5">
+            <h2 className="text-xl md:text-2xl font-medium tracking-tight">
+              Shop by Category
+            </h2>
+            <span className="text-sm text-gray-400 hidden sm:block">
+              Curated styles
+            </span>
+          </div>
 
-          {/* Horizontal scrollable categories */}
-          <div className="overflow-x-auto scrollbar-hide">
-            <div className="flex space-x-2 md:space-x-4 pb-2">
-              {categories.map((category) => (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-full whitespace-nowrap transition-all ${selectedCategory === category
-                      ? 'bg-[#831113] text-white'
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
-                >
-                  {category}
-                </button>
-              ))}
+          {/* Tabs */}
+          <div className="relative">
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="relative flex gap-8 min-w-max border-b border-gray-200 px-2">
+                {categories.map((category, index) => {
+                  const isActive = selectedCategory === category;
+                  const Icon = CATEGORY_META[category]?.icon;
+
+                  return (
+                    <button
+                      key={category}
+                      onClick={() => setSelectedCategory(category)}
+                      className="relative pb-4 group"
+                    >
+                      {/* Content */}
+                      <div
+                        className={`flex items-center gap-2 text-sm md:text-base transition-colors
+                  ${isActive
+                            ? "text-black font-medium"
+                            : "text-gray-500 group-hover:text-gray-800"
+                          }`}
+                      >
+                        {Icon && <Icon className="w-4 h-4" />}
+                        {category}
+
+                        {/* Badge */}
+                        {CATEGORY_META[category]?.badge && (
+                          <span className="ml-1 text-[10px] px-1.5 py-0.5 rounded-full tracking-wider
+                    bg-black text-white">
+                            {CATEGORY_META[category].badge}
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Sliding underline anchor */}
+                      {isActive && (
+                        <span
+                          className="absolute left-0 -bottom-[1px] h-[2px] w-full bg-black rounded-full"
+                        />
+                      )}
+                    </button>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
 
+
+
         {/* Product Grid */}
-        <div className="mb-16">
+        <div className="mb-20">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl md:text-2xl">
               {selectedCategory === 'All' ? 'All Products' : selectedCategory}
@@ -83,7 +133,7 @@ export default function Products() {
 
         {/* Featured Section - Editor's Picks */}
         {featuredProducts.length > 0 && (
-          <div className="py-20 mb-8">
+          <div className=" mb-8">
             <div className="flex items-center space-x-2 mb-6">
               <Star className="text-yellow-500 w-6 h-6" />
               <h2 className="text-2xl md:text-3xl">Editors Picks</h2>
@@ -100,7 +150,37 @@ export default function Products() {
             </div>
           </div>
         )}
+
+        {/* New Arrivals Section */}
+{newArrivals.length > 0 && (
+  <div className="mb-24">
+    {/* Header */}
+    <div className="flex items-center justify-between mb-6">
+      <div>
+        <h2 className="text-2xl md:text-3xl font-medium tracking-tight">
+          New Arrivals
+        </h2>
+        <p className="text-sm text-gray-500 mt-1">
+          Fresh drops, just landed
+        </p>
       </div>
+
+      <span className="text-xs uppercase tracking-widest text-gray-400">
+        Latest
+      </span>
+    </div>
+
+    {/* Products */}
+    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      {newArrivals.slice(0, 4).map((product) => (
+       <NewArrivalCard key={product.id} product={product} />
+
+      ))}
+    </div>
+  </div>
+)}
+      </div>
+
 
     </div>
   );

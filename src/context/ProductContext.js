@@ -7,7 +7,7 @@ const productsData = [
     {
         id: 'prod_001',
         title: 'Classic White Tee',
-        category: 'T-Shirts',
+        category: 'Shirts',
         price: 29.99,
         description: 'Premium cotton t-shirt with a classic fit. Perfect for everyday wear.',
         availability: 'in-stock',
@@ -18,12 +18,13 @@ const productsData = [
         ],
         featured: true,
         views: 245,
-        createdAt: '2024-01-10T10:00:00Z'
+        createdAt: '2024-01-10T10:00:00Z',
+        new_arrival: true
     },
     {
         id: 'prod_002',
         title: 'Denim Jacket',
-        category: 'Jackets',
+        category: 'T-Shirts',
         price: 89.99,
         description: 'Timeless denim jacket with a modern twist. Versatile and durable.',
         availability: 'in-stock',
@@ -66,7 +67,7 @@ const productsData = [
     {
         id: 'prod_005',
         title: 'Summer Dress',
-        category: 'Dresses',
+        category: 'Shirts',
         price: 69.99,
         description: 'Lightweight and breezy summer dress. Perfect for warm weather.',
         availability: 'in-stock',
@@ -81,7 +82,7 @@ const productsData = [
     {
         id: 'prod_006',
         title: 'Leather Boots',
-        category: 'Shoes',
+        category: 'Punjabi',
         price: 149.99,
         description: 'Premium leather boots with classic styling. Built to last.',
         availability: 'in-stock',
@@ -90,7 +91,9 @@ const productsData = [
             'https://i.ibb.co.com/Mk6vJcR6/0040000105043-1.webp'
         ],
         views: 198,
-        createdAt: '2024-01-09T13:30:00Z'
+        createdAt: '2024-01-09T13:30:00Z',
+                new_arrival: true
+
     },
     {
         id: 'prod_007',
@@ -104,12 +107,14 @@ const productsData = [
             'https://mcprod.aarong.com/media/catalog/product/0/0/0040000105080_1.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=&width='
         ],
         views: 421,
-        createdAt: '2024-01-13T10:00:00Z'
+        createdAt: '2024-01-13T10:00:00Z',
+                new_arrival: true
+
     },
     {
         id: 'prod_008',
         title: 'Wool Coat',
-        category: 'Jackets',
+        category: 'Shirts',
         price: 199.99,
         description: 'Elegant wool coat for cold weather. Tailored fit.',
         availability: 'out-of-stock',

@@ -19,17 +19,17 @@ export default function WelcomeTypingSection() {
   }, [index]);
 
   return (
-      <section className="flex justify-center py-20 bg-white">
+      <section className="flex justify-center pt-20 bg-white">
       <div className="relative text-center">
 
         {/* Text */}
-        <h2 className="relative z-10 text-4xl  font-semibold tracking-tight text-gray-900 leading-tight">
+        <h2 className="font-heading  relative z-10 text-4xl  font-semibold tracking-tight text-gray-900 leading-tight">
          Welcome To Arkade
         </h2>
 
         {/* Subtitle */}
         <p className="relative z-10 text-base md:text-lg tracking-wide text-gray-600">
-          Minimal pieces. Maximum impact.
+       Wear Confidence. Define Your Style.
         </p>
 
         {/* Double Curved Lines */}
